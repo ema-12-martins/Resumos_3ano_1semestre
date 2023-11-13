@@ -3,9 +3,11 @@ Dividem o trabalho pelos varios cores do pc. Assim, aumentamos a velocidade de 1
 
 # Corridas
 Quando 2 cores leem e escrevem na mesma variavel. Pode acontecer:
+<pre>
 Core 1: read1 -> write2 -> read2 -> write3 -> ...
 Core 2: read1 ->   ...  ->   ... ->  ...   -> write2
-Logo, os valores finais não serao corretos
+</pre>
+Logo, os valores finais não serao corretos.
 
 # Exclucao Mutua
 Determinar **seccoes criticas** que sao partes do codigo em que apenas pode executar um thread de cada vez (tornar operacao atomica). Para isso usamos locks.
@@ -45,11 +47,11 @@ Este algoritmo tem 1 array de flags que é acionado quando se quer usar a secaco
 Temos de deixar apenas 1 entrar na seccao critica, atravez de um filtro de n-1 camadas.
 
 | Thread 0 | Thread 1 | Thread 2 | Thread 3 | Vitima |
-|----------------------------------------------------|
-| 1 | 1 | 1 | 1 | 0
-|   | 1 | 1 | 1 | 2
-|   | 1 |   | 1 | 3
-|   | 1 |   |   | 
+|----------|----------|----------|----------|--------|
+| 1        | 1        | 1        | 1        | 0      |
+|          | 1        | 1        | 1        | 2      |
+|          | 1        |          | 1        | 3      |
+
 
 Podemos substituir esta representacao por um array que diz quantas linhas da coluna estao ocupadas:
 1->4->2->3
@@ -89,17 +91,22 @@ Consideremos que a secao critica é pedir o numero que vamos testar se é primo.
 2. Pedir 2 numeros -> Teste -> Incrementar -> Teste
 
 1. 
+<pre>
 --++++--++++
   --++++--++++
     --++++--++++
+</pre>
+
 Neste caso nao vale a pena pedir mais threads pois 1 deles nao estará a fazer trabalho util.
 
 2. 
+<pre>
 --++++++++++
   --++++++++++
     --++++++++++
       --++++++++++
         --++++++++++
+</pre>
 Neste caso conseguimos ter mis threads em simultaneo. Como passam mais tempo fora da secao critica, esta pode ser usada por mais threads.
       
 Devemos fazer com que o codigo das secçoes criticas seja pequeno em relacao ao codigo total e temos de fazer com que essa secção seja usada o minimo de vezes possiveis. **Devemos minimizar o numero de threads que querem aceder a uma secção critica bem como minimizar o tempo destas zonas.**
@@ -109,13 +116,19 @@ Duas threads estao para sempre à espera um do outro. Para nao termos esse probl
 EX: Se A quiser matar B e B quiser matar A, ambos tem de obter primeiro o lock do A e so depois o do B.
 
 # Multiplos locks
+<pre>
 ----lock A----       -----lock B----
+</pre>
 Se tivermos um observador no meio, consegue ver um estado incoerente.
+<pre>
 ----lock A---- 
   ----lock B----
+</pre>
 Assim já resolveria o problema. Porem tornar isto mais eficiente
+<pre>
 ----lock A----
             ----lock B----
+</pre>
 Isto é um caso concreto do 2PL
 
 # 2PL (Two Phase locking)
@@ -126,9 +139,10 @@ Isto é um caso concreto do 2PL
 O programa gerado é semelhante a 1 que tenha todos os locks adquiridos no incio e liberte todos no final.
 
 Exp:
+<pre>
 -----------lock A--------------
-        --lock B--
-
+         --lock B--
+</pre>
 
 # Locks vs Variavies
 Varias threads que acedam ao mesmo item de dados concorrentemente devem adquirir o mesmo lock. Para o fazer:
@@ -166,7 +180,7 @@ Note-se que temos de libertaar o lock enquanto estamos a espera para que outros 
 Lock l = new ReentrantLock();
 Condition c = l.newCondition();
 ~~~
-**c.await;** -> Suspende o thread e liberta o lock associado
+**c.await();** -> Suspende o thread e liberta o lock associado
 **c.signalAll();** -> Acorda todos os threads que foram suspendidos nessa condicao
 **c.signal();** -> Acorda apenas uma das threads que foram suspendidas nessa condicao
 

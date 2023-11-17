@@ -64,3 +64,40 @@ Para a remoção do ligante, numa atmosfera em árgon, o intervalo de temperatur
 200 a 450°C durante 2 a 5 horas.
 Para a sinterização do compacto em verde, a temperatura deverá estar entre 850 a 1300°C, de 1 a 3horas com um vácuo entre 1 𝑎 2 × 10−3Pa. No caso de uma atmosfera em árgon a temperatura deverá ser entre 1080 a 1200°C, de1 a 2 horas
 **.............Fim da copia...............**
+
+# Caracterizacao de espumas metalicas
+Os espaços vazios num material denso é definido como **porosidade** e esta pode ser de 3 tipos: poros fechados, abertos ou uma combinacao dos 2
+Os poros fechados nao se encontram entre si, estando separados por uma menbrana de metal. Estes opoem-se aos abertos.
+
+Macroporos obteem-se pelo numero e tamanho do space holder e os microporos soa resultado de particulas do po metalico ou de uma sintetizacao imcompleta. 
+
+Aumentando a porosidade e o tamanho dos poros, leva a que diminuam as propriedades mecanicas -> Ter de ter em atencao a relacao de porosidade e propriedades. Para crescer tecido osseo o ideal é poros de 100 a 500um e com superficies rugosas e irregulares(maior area superficial para o crescimento do tecido osseo).
+
+Com os poros as ligas de Ti e Ti6AI4V podem conseguir ter modolos de Young porximos dos do osso. Ter em atencao que pode levar no entanto a uma reducao da resistencia á faadiga e ductibilidade devido a concentrar tensoes proximo dos poros. Isto leva a deslocamentos locais e intensos e na deformacao das paredes dos poros.
+
+FIGURA 8 -> para materiais de alta porosidade
+Na primeira etapa ocorre uma deformacao elestica. Leva ao aumento da tensao associado ao modolo de young. Na segunda etapa nao aumenta a deformacao pois houve colapso dos poros. No final a tensao leva ao aumento da deformacao. Ocorre densificacao, ou seja, as paredes dos poros tocam entre elas.
+
+**...........Copiei esta parte...............**
+Um outro estudo com espumas de titânio com porosidade aberta de 78 e 81%, com um tamanhos de poros entre 50 e 150 μm, respetivamente, obtidas por uma técnica de metalurgia dos pós, usando um space holder e sinterizadas numa atmosfera controlada a 1000°C foi realizado. Neste estudo  foi verificado um módulo de Young de 2,56 GPa e de 1,5GPa para as espumas de titânio com 78 e 81% de porosidade, respetivamente. As espumas com menor porosidade apresentaram maior resistência e ductilidade relativamente às espumas com maior porosidade. Estes resultados obtidos estão próximos dos valores do osso humano, tornando assim promissoras estas espumas para este tipo de aplicação.
+**.............Fim da copia...............**
+
+NESTE PONTO TEM 50 MILHOS DE EXEMPLOS DE TESTES. PODEMOS ESCOLHER +
+
+# Corrosao em espumas metalicas
+Espumas sao suscetiveis a corrusao nao so pela grande area superficial como pelas geometrias complexas, angulos internos, superficies rugosas, tensoes, deformacoes e restricoes aos fluidos. Isto pode levar a taxas de corrosao que nao sao proporcionais á area superficial. 
+
+Uma porosidade elevada pode levar a uma maior corrosao intersticial pois o eletrolito fica estanque. Poros mais pequenos restringe o fluxo do eletrolitoe logo ha menos corrusao.
+
+Um estudo disse que porosidade abaixo de 15% leva a que a corrosao seja semelhante á liga densa.
+
+**...........Copiei esta parte...............**
+Num outro estudo referente ao comportamento à corrosão de titânio poroso numa solução que simula os fluidos corporais, solução aquosa tamponada de fosfato, a 37°C, verificou-se que o titânio poroso apresenta uma ligeira melhoria na resistência à corrosão do que o titânio denso. Os autores atribuíram este comportamento à estrutura e à natureza da camada de óxido que se formou.
+**.............Fim da copia...............**
+
+# Desgastacao dos implantes
+Fluidos corporais extracelulars contem ioes cloreto que em certas quantidades levam a corrosao (sangue e fluidos interticiais). Tambem contem aminoacidos e proteinas que aceleram a corrosao e momovem a mudanca do ph 7.35-7.45 para 5.2.
+
+Devido á corrosao e á dissolucao do filme de oxido que se forma na superficie leva á libertacao de ioes metalicos no corpo humano. Estes, em quantidades significativas podem levar a efeitos adversos no osso e tecido circundate o que consequentemente pode levar a falha com implante.
+
+A diferenca entre o modulo de young e a rigidez(movimentos osso implante), levam a tensoes de desgaste. È essencial uma elevada registencia ao desgaste é essencial para que se tenha biocamptibilidade e aceitabilidade do implante.

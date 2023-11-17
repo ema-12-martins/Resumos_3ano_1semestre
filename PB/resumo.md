@@ -15,7 +15,7 @@ Com o passar do tempo a cartilagem destroi-se (nao se consegue recuperar) e os o
 OS emplantes tendem a durar no maximo 15 anos. A sua corrosao/desgaste gera detritos que vao para a corrente sanguine e consequentemente podem danificar celulas, provocar inflamacoes e toxicidade...
 
 # Materiais usados em implantes ortopedicos
-Nos emplantes usam-se normalmente materiais metalicos como o aço inoxidável 316L, ligas de CoCr, titânio e ligas de titânio, devidos as suas caracteristicas.
+Nos implantes usam-se normalmente materiais metalicos como o aço inoxidável 316L, ligas de CoCr, titânio e ligas de titânio, devidos as suas caracteristicas.
 
 | Propriedade                | Aço Inoxidável 3126L | Ligas CoCr   | Ti C.P. | Osso Humano Cortical |
 |----------------------------|----------------------|--------------|---------|-----------------------|

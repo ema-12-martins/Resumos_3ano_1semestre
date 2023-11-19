@@ -110,7 +110,9 @@ Executa uma procura para a frente desde o estado incial e para tras desde o obje
 Expande o no que parece estar mais perto da solucao. A heuristica corresponde ao custo estimado do caminho mais curto do estado n para o objetivo(Exp.Distancia em linha reta).
 Não é completo pois pode entrar em ciclos. O tempo pode diminuir com uma boa funcao heuristica. Mantem todos os nos em memoria. Nao é otimo porque nao encontra sempre a solucao otima.
 
-![GS](https://www.researchgate.net/profile/Inne-Husein/publication/323137457/figure/fig1/AS:664823503273985@1535517683556/Greedy-Search-using-h-value-11-Figure-2-illustrates-greedy-search-for-Bucharest-with_Q320.jpg)
+
+![GS](https://www.researchgate.net/publication/323137457/figure/fig1/AS:664823503273985@1535517683556/Greedy-Search-using-h-value-11-Figure-2-illustrates-greedy-search-for-Bucharest-with.png)
+
 
 ## A*
 Evita expandir caminhos que sejam dispendiosos. Juncao de gulosa com custo uniforme.

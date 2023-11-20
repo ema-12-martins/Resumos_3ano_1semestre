@@ -1,0 +1,4 @@
+# O que eu vou falar
+O material que vamos usar é o Ti. Escolhemos o Ti pelas suas propriedaes. Este é tem boas propriedades mecanicas, tem baixa densidade e é resistente á corrusao (derivo á camada de dioxido de titanio que se forma espontaneamente).
+O titanio tem um modulo de young muito diferente do do osso humano o que pode levar a que a protese seje rejeitada. No entanto, com o uso de esponjas de ti conseguimos reduzir essa diferença. Tendo poros leva ao que intercrescimento do osso mas tambem leva ao transporte de fluidos corporais. Estes fluidos contem ioes que podem corroer a protese.
+Temos de ter atencao ao tamanho dos poros pois quanto maiores sao os poros leva a diminuicao das propriedades mecanicas como menos resistencia ao desgaste e ductibilidade pois concentra tensoes proximas dos poros.

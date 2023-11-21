@@ -65,8 +65,7 @@ filho(X,Y):-pai(Y,X).
 avo(X,Z):-pai(X,Y),pai(Y,Z)
 ~~~
 
-**EXERCICIO 2**
-Considerando a seguinte base de conhecimento:
+**EXERCICIO 2**: Considerando a seguinte base de conhecimento:
 ~~~
 aluno(joao,calculo).
 aluno(maria,calculo).
@@ -91,8 +90,7 @@ alunos_do_professor(A,P):-professor(P,C),aluno(A,C).
 associados_a_faculdade(A,F):-funcionario(A,F);frequencia(A,F).
 ~~~
 
-**EXERCICIO 2**
-Segue uma tabela de quem pode doar e receber. Faca um programa que determine quais tipos sanguineos podem doar/receber de quais tipos.
+**EXERCICIO 3**: Segue uma tabela de quem pode doar e receber. Faca um programa que determine quais tipos sanguineos podem doar/receber de quais tipos.
 |       | A            | B            | AB               | O                |
 |-------|--------------|--------------|------------------|------------------|
 | A     | Doar/Receber | -            | Doar             | Receber          |

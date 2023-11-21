@@ -24,7 +24,7 @@ Comentarios:
 /**/:Comentario de varias linhas
 
 # Primeiro Programa
-**Exercicio 1**:
+**Exercicio 1**:Escreva um programa para ler algo do teclado e escrever o que leu.
 ~~~
 start() :-
     write('Digite o valor de X:'),

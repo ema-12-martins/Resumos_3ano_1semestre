@@ -82,10 +82,13 @@ funcionario(ana_paula,puc).
 funcionario(carlos,puc).
 ~~~
 1. Quem sao os alunos do professor X?
+
+2. Quem sao as pessoas que estao associadas a uma universidade X? (professores e alunos)
+
+As solucoes sao as seguintes:
 ~~~
 alunos_do_professor(A,P):-professor(P,C),aluno(A,C).
 ~~~
-2. Quem sao as pessoas que estao associadas a uma universidade X? (professores e alunos)
 ~~~
 associados_a_faculdade(A,F):-funcionario(A,F);frequencia(A,F).
 ~~~
@@ -194,7 +197,7 @@ nota(mary,10.0).
 ~~~
 3. Calcule o indice de massa corporal.
 
-As solucoes sao entao as seguintes
+As solucoes sao entao as seguintes:
 ~~~
     write('Escreva um numero'),
     read(X),
@@ -203,8 +206,8 @@ As solucoes sao entao as seguintes
         (X<100, write('Numero menor que 100'));
         (X=:=100, write('Numero igual a 100'))
     ).
-
-
+~~~
+~~~
 estado_aluno(X):-
     nota(X,Nota),
     (
@@ -212,8 +215,159 @@ estado_aluno(X):-
         (Nota >= 6.0, Nota < 7.0, write('Recuperacao'));
         (Nota >= 0.0, Nota < 6.0, write('Reprovado'))
     ).
-    
+~~~
+~~~
 imc(Peso,Altura):-
     X is Peso/(Altura*Altura),
     write('IMC: '), write(X).
+~~~
+
+# Regras recursivas
+Comecamos sempre pelo caso de paragens e depois pela recursao. Seguem alguns exemplos.
+~~~
+descendente(X,Y):-filho(X,Y).
+descendente(X,Y):-
+    filho(X,W),
+    descendente(W,Y).
+
+fatorial(0, 1).
+fatorial(X, Resultado) :-
+    X > 0,
+    X1 is X-1,
+    fatorial(X1, SubResultado),
+    Resultado is X * SubResultado.
+~~~
+
+**EXERCICIO 5**
+1. Defina uma regra que determine que animais pertencem a cadeira alimentar de outro
+~~~
+animal(urso).
+animal(peixe).
+animal(peixinho).
+animal(lince).
+animal(raposa).
+animal(coelho).
+animal(veado).
+animal(guaxinim).
+
+planta(alga).
+planta(erva).
+
+come(urso,peixe).
+come(lince,veado).
+come(urso,raposa).
+come(urso,veado).
+come(peixe,peixinho).
+come(peixinho,alga).
+come(guaxinim,peixe).
+come(raposa,coelho).
+come(coelho,erva).
+come(veado,erva).
+come(urso,guazinim).
+~~~
+2. Cire um prigrama que resolve esta equacao:
+X1=2 e Xn=Xn-1 -3n²
+
+As solucoes sao:
+~~~
+pertence_cadeia(X,Y):-
+    animal(X),
+    animal(Y),
+    (
+        come(X,Y);
+        come(Y,X)
+    ).
+pertence_cadeia(X,Y):-
+    animal(X),
+    animal(Y),
+    (
+        (come(X,W),pertence_cadeia(W,Y));
+        (come(W,Y),pertence_cadeia(X,W))
+    ).
+~~~
+
+# Clausulas
+**!**: Corte a execucao do problema. Considerado sempre verdadeiro. Se algo ja se tiver encontrado uma solucao, n faz sentido ter de encontrar mais.
+Considere f(x) que diz que se X<3 da 0, se x>=3 e x<6 da 2 e se x>6 da 4.
+~~~
+f(X,0):- X<3.
+f(X,2):- 3=<X,X<6.
+f(X,4):- 6=<X.
+~~~
+Neste caso, se X<3 ele vai executar as outras duas linhas na mesma, desnecessariamente. Logo:
+~~~
+f(X,0):- X<3,!.
+f(X,2):- X<6,!.
+f(X,4).
+~~~
+
+Nota: **trace** mostra o fluxo de execussao.
+
+Considerando
+~~~
+m(1).
+m(2):-!.
+m(3).
+m1(X,Y):- m(X),m(Y).
+m2(X,Y):- m(X),!,m(Y)
+~~~
+Teriamos:
+?-m(1). --------->True
+?-m1(X,Y) ------->X=Y, Y=1 mas ele da mais combinacao X=1 e Y=2 , X=2 e Y=3 e depois ambos 2
+?-m2(X,Y) ------->False pois encontra os X mas nao os Y
+?-m(3). --------->False pois antes ele corta.
+
+**fail**: Forca o backTrack.
+**repeat**:Repete varias vezes. Ter atencao de n entrar em loop infinito.
+**random**: Um random(5) gera um numero random de 0 a 4.
+~~~
+adivinhar_numero:-
+    N is random(5)+1,
+    repeat,
+        lerDados(G),
+        processarDados(G,N).
+
+lerDados(G):-
+    write('Escreva numero de 1 a 5'),
+    read(G).
+
+processarDados(G,N):-
+    G=:=N,
+    write('Acertou'),
+    nl.
+processarDados(G,N):-
+    G\=N,
+    write('Errou'),
+    fail.
+~~~
+
+# Listas
+A lista ou é vazia ou possui duas partes, a cabeca e a cauda.
+
+**EXERCICIO 6**
+1. Ver se um elemento pertence a uma lista.
+2. Elemento é o ultimo elemento da lista.
+3. A lista tem 2 elementos estao seguidos/consecutivos na lista.
+4. Retornar tamanho da lista.
+~~~
+pertence(X,[X|_]).
+pertence(X,[_,T]):-
+    pertence(X,T).
+~~~
+~~~
+ultimo(X,[X]).
+ultimo(X,[_,T]):- 
+    ultimo(X,T).
+~~~
+~~~
+consecutivos(X,Y,[X,Y|_]).
+consecutivos(X,Y,[_|T]):-
+    consecutivos(X,Y,H).
+
+~~~
+~~~
+tamanho([],0).
+tamanho([_,T],Resultado):-
+    tamanho(T,ResAux),
+    Resultado is ResAux+1.
 ~~~

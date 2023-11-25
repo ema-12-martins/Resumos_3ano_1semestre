@@ -371,3 +371,27 @@ tamanho([_,T],Resultado):-
     tamanho(T,ResAux),
     Resultado is ResAux+1.
 ~~~
+
+**EXERCICIOS 7**
+1. Crie um programa que pede um numero ao utilizador e devolve o seu quadrado. O programa devolve quando for escrito stop.
+2. Imprime no ecra todos os numero de 0 ao passado como argumento.
+3. Somente usando operadores '+','-' e '*', calcular a potencia de um numero.
+
+**EXERCICIOS 8**
+1. Verificar se L1 é prefixo de L2.
+2. Verificar de L1 é sufixo de L2.
+3. Recebe uma lista de numeros e retorna uma lista so com numeros pares.
+4. Retorna verdadeiro se todos os atomos da lista forem X.
+5. Verifica se o elemento esta pelo menos 1x na lista.
+6. Dado a seguinte base de conhecimento, traduza os numeros.
+~~~
+traducao(one,um).
+traducao(two,dois).
+traducao(three,tres).
+traducao(four,quatro).
+traducao(five,cinco).
+traducao(six,seis).
+traducao(seven,sete).
+traducao(eight,oito).
+traducao(nine,nove).
+~~~

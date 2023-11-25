@@ -119,3 +119,101 @@ recebe(ab,ab).
 recebe(ab,o).
 recebe(o,o).
 ~~~
+
+# Manipular a Base de Conhecimento
+Para criar predicados dinamicos é preciso colocar no inicio do ficheiro. O **consult** apenas carrega o conhecimento estatica.
+:-dynamic Nome/Aridade.
+No entanto as alteracoes sao volateis, ou seja, o arquivo original nao é alterado.
+~~~
+:-dynamic homem/1.
+~~~
+Posso usar o comando **listing(homem)** para listar todos os homens.
+
+
+Util para robos que vao conhecendo o ambiente ao longo da sua procura:
+**assert(homem(Jorge)).**: Insere no final da Base de Conhecimento.
+**asserta(homem(Jorge)).**: Inserida no inicio da Base de Conhecimento.
+**retract(homem(Jorge)).**: Remove o primeiro match
+**retractall(pai(_,Bob)).**: Remove todos os factos que dao match.
+
+# Aritmetica
+O Prolog aceita notação infixa (2 * a + b + c) como prefixada `(+(*(2, a), +(b, c)))`.
+
+
+| Operador | Função                    |
+|----------|---------------------------|
+| +        | Soma                      |
+| -        | Diferença                 |
+| *        | Multiplicação             |
+| /        | Divisão                   |
+| is       | Atribuição de variável    |
+| mod      | Resto da Divisão          |
+| ^        | Potência                  |
+| cos      | Cosseno                   |
+| sen      | Seno                      |
+| tan      | Tangente                  |
+| exp      | Exponenciação             |
+| ln       | Logaritmo Natural         |
+| log      | Logaritmo                 |
+| sqrt     | Raiz Quadrada             |
+
+**integer(X)**: Tranforma string em integer
+**float(X)**: Converte X para ponto flutuante
+
+| Operador | Significado   |
+|----------|---------------|
+| >        | Maior         |
+| <        | Menor         |
+| >=       | Maior igual   |
+| <=       | Menor igual   |
+| =:=      | Igual         |
+| \=       | Diferente     |
+| \+       | Negação       |
+
+Nota se que so "=" compara os objetos de vao iguais enquanto que "=:=" se tem os mesmo valores.
+1+2=2+1 ira ser falso porque o prolog tenta unificar 1 a 1, ou seja, compra o 1 com o 2 e depois o + com o + e por ultimo o 2 com o 1. No entanto, ponto(A,B)=ponto(1,2). da verdadeiro, pois uma variavel unifica com qualquer coisa.
+
+Exp:
+~~~
+soma(A,B,Resultado):- Resultado is A+B
+~~~
+
+**EXERCICIO 4**
+1. Crie um programa que peca no terminal um numero inteiro e imprima se o numero é maior que 100, menor ou igual.
+2. Escreva uma regra que identifique a situacao de um dado aluno tendo em consideracoa que notas de 7 a 10 esta aprovado, de 5 a 6.9 esta em recuperacao e de 0 a 5 esta reprovado, tendo em consideracao os seguintes factos
+~~~
+nota(joao,5.0).
+nota(mariana,9.0).
+nota(joaquim,4.5).
+nota(maria,6.0).
+nota(cleuza,8.5).
+nota(mara,4.0).
+nota(joana,8.0).
+nota(jose,6.5).
+nota(mary,10.0).
+~~~
+3. Calcule o indice de massa corporal.
+
+As solucoes sao entao as seguintes
+~~~
+    write('Escreva um numero'),
+    read(X),
+    (
+        (X>100,write('Numero maior que 100'));
+        (X<100, write('Numero menor que 100'));
+        (X=:=100, write('Numero igual a 100'))
+    ).
+
+
+estado_aluno(X):-
+    nota(X,Nota),
+    (
+        (Nota >= 7.0, write('Aprovado'));
+        (Nota >= 6.0, Nota < 7.0, write('Recuperacao'));
+        (Nota >= 0.0, Nota < 6.0, write('Reprovado'))
+    ).
+    
+imc(Peso,Altura):-
+    X is Peso/(Altura*Altura),
+    write('IMC: '), write(X).
+~~~

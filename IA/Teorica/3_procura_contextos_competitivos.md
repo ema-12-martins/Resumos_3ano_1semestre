@@ -61,8 +61,11 @@ O alpha define o melhor valor para max pelo que se v for menor que alpha, o max 
 # Monte Carlo Tree Search
 Aplicado a jogos com arvores profundas, grande fator de ramificacao e sem boas heuristicas.
 1. Selecionar um no folha para expansao 
-2. Executar uma **simulacao** usando uma politica padrao(como é ecemplo movimentos aleatorios) ate que se atinja um estado terminal.
+2. Executar uma **simulacao** usando uma politica padrao(como é exemplo movimentos aleatorios) ate que se atinja um estado terminal.
 3. Propagar novamente o resultado par atualizar as estimativas de valores dos nos internos.
+
+selection->expantion->simulacao->back propagation
+Pega num no, expande um no e simula uma situacao de jogo. Dependendo dos resultados, atualiza os valores
 
 # Jogos Estocasticos
 Este tipo de jogos combina habilidade e sorte. Neste caso, a arvore de procura deve incluir nos de probabilidade.
@@ -79,3 +82,19 @@ Este tipo de jogos combina habilidade e sorte. Neste caso, a arvore de procura d
 | Poker        | Imperfeita      | Estocástico      |
 | Bridge       | Imperfeita      | Determinístico   |
 
+# Expectiminimax
+Para nos sorte somar os valores dos estados sucessores ponderados pela porbabilidade de cada sucessor.
+
+Temos uma profundidade maxima e nessas folhas usar a funcao de avaliacao. Esta funcao neste caso deve indicar a probabilidade de ganahr em cada estado.
+
+![Exepct](https://courses.engr.illinois.edu/cs440/fa2018/lectures/expectiminimax.png)
+
+# Onde usar
+Se conhecemos as probalilidades de diferentes configuracoes e queremos maximizar os ganhos medios(por exemplo, se podermos jogar o jogo varias vezes), ai devemos usar o **expectiminimax**.
+Se nao temos ideia das probalilidades de diferentes configuracoes ou se somente podermos jogar uma vez, entao devemos usar **minimax**.
+Se temos informacao desconhecida delecionada intencionalmente pelo oponente, **teoria de jogos**
+
+
+Links:
+[ABP](https://www.youtube.com/watch?v=_i-lZcbWkps) e
+[MC](https://www.youtube.com/watch?v=ghhznqBoESY)

@@ -14,7 +14,7 @@ Tem em atencao a melhor posicao do passado ou a melhor posicao passada do grupo.
 Se a velocidade for muito grande, os individuos passam boas solucoes. Se for lento de mais, podem ficar parados num maximo local. Temos um pareametro que é a velocidade maxima.
 
 # FIPS
-FIPS escolhe o melhor de 3 solucoes nas redondezas.
+FIPS escolhe das redondezas (usa todos os seus vizinhos).
 
 # Bare Bones PSO
 Usa um distribuiacao uniforme ao invez da velocidade. Cada particula tenta uma posicao entre o seu melhor e o melhor da populacao.
@@ -23,5 +23,5 @@ Usa um distribuiacao uniforme ao invez da velocidade. Cada particula tenta uma p
 Guarda nao so o melhor ponto como o pior ponto. Tanto a melhor como a pior interferem na procura. So vai para a posicao se for melhor do que a que ja esta.
 
 # GWO
-Escolhe a melhor de 3 posicao re faz uma combinacao random. Depois de 2 e depois de 1...
+Escolhe a melhor de 3 posicao e faz uma combinacao random.
 

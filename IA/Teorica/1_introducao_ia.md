@@ -8,8 +8,11 @@ A inteligencia artificial pode ser dividida em dois tipos:
 Dados->Informacao->Conhecimento->Sabedoria
 </pre>
 **Dados**->São factos/observaçeos, que por si só nao tem significado. Ex.10
-**Informacao**->Refere-se aos dados organizados e contextualizados de modo a terem significado. Ex. 10 anos
+
+**Informacao**->Refere-se aos dados organizados e contextualizados de modo a terem significado. Ex.10 anos
+
 **Conhecimento**-> Compreender e aplicar as informaçoes. Ex. Se tem 10 anos é uma criança
+
 **Sabedoria**->Aplicaçao do conhecimento para tomar decisoes adequadas para diferentes situaçoes. Ex. Se é criança, nao pode ser este filme.
 
 <pre>

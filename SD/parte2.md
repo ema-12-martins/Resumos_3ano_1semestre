@@ -222,6 +222,85 @@ Streaming: A conversao é feita a medida que é feita a travessia, por ordem que
 
 Object model: Temos um modelo de dados carregado em memoria que pode ser consultado por uma ordem arbitraria. È criado um objeto intermedio com todos os objetos juntos. Assim podemos consultar pela ordem que queremos. Temos de copiar os dados 2x, um para o intermedio e outro para o final.
 
+# Threads
+Os processos agrupam os recursos que estao em uso como memoria e ficheiros abertos e as threas contem o contexto de execusao.
+
+## Client-Servidor
+A thread do cliente espera pelas respostas. A thread do servidor espera por pedidos do cliente.
+
+## Single-Threaded
+Caso mais simples um servidor tem apenas uma thread. Ele atende os pedidos de 1 cliente e quando acabar de atender esse cliente, pode atender os pedidos de outro cliente 
+~~~
+var sock = new ServerSocket(12345);
+while(true){
+    var sock Socket = socket.accept();
+    #Executa cenas para esse cliente
+    #Recebe pedidos e devolve Resposta
+    #Ao terminal fecha o socket
+}
+~~~
+
+## Thread-per-connection
+Cada vez que um cliente estabelece uma sessao com o cliente num thread em separado. Assim temos pedidos de clientes diferentes a serem processados concorrentemente.
+~~~
+var sock = new ServerSocket(12345);
+while(true){
+    var sock Socket = socket.accept();
+    new Thread(()->
+    #codigo da thread
+    ).start();
+}
+~~~
+
+## Thread-per-request
+Podemos fazer uma melhoria ao anterior, nao tendo apenas uma thread por cliente mas no servidor varias threads a tratar de pedidos do cliente. Temos de ter um lock ao escrever as respostas no cliente para ter a certeza que estas nao se misturam no socket. Como os pedidos podem ser resolvidos em qualquer ordem pelo que temos de ter um identificador. Tem o mal de estarmos constantemente a criar e a matar threads e temos ainda o risco de a thread nao poder ser feita.
+
+## Thread Pool
+Em vez de ter uma thread por pedido, temos um conjunto de threads que estou a espera para processar pedidos. Assim temos um maximo de threads em execussao em simultaneo. Quando sao livres, voltam a ficar desocupados. Tem a vantagem de reduzir o  custo pois reutiliza threas. Limita ainda o numero de pedidos a executar no mesmo servidor, nunca ficando em subcarga. Temos de fazer controlo de concorrencia a escrever as respostas.
+
+## 1-to-n Notifications
+Ao realizar o pedido e a resposta a ser lenta, pode bloquear a escrita de outros nas suas respetivas threads. A solucao é nao permitir que no mesmo socket estejam a escrever threads de diferentes clientes. Para isso associamos a cada sessao um segundo thread e temos uma fila de respostas do cliente. Cada resposta vai para um socket que é lido por um intermediario que manda para o buffer de cada um dos clientes. Quando se recebe uma resposta, acorda-se a thread que esta á espera de respostas.
+
+****
+## Multi-threaded
+O cliente pode ter varias threads a mandar varios pedidos em simultaneo. Mas para isso temos de ter uma seccao critica para escrever para o socket. O receive tambem poderia nao estar a ser executado pela ordem certa. So da para fazer 1 pedido da cada vez
+
+## Multi-threaded with Dispatcher
+Os pedidos vao para um buffer que por sua vez escreve para o socket. Nas respostas, acontece a mesma coisa. 
+
+## Callbacks
+Podemos por uma condicao para perceber se o cliente/servidor esta a receber um pedido ou uma resposta. Nesse caso, ambos fazem pedidos e recebem respostas.
+
+# Migracao de codigo
+Threads: contexto de processo + stack
+
+Processo: threads + contexto memoria + contexto SO
+
+SO: Conjunto de recursos partilhados
+
+Temos de ter a procupacao de saber onde é que uma thread esta a executar num determinado momento. A segunda é em que medida é que nao passa as froteiras entre diversos processos ou mesmo maquinas.
+
+Num computador se queremos digitar um numero, por cada digitacao viamos se era um numero. Em sistemas distribuidos nao podemos fazer isso pois teriamos por cada digito de conectar o servidor. Outro exemplo é queries em bases de dados. No distribuido, estariamos a mandar os dados para o cliente processar.
+
+Para evitar este problema usa-se a migracao de codigo. O cliente nao trabalhar diretamente sobre os dados. O cliente manda algum codigo para o servidor para que seja feita a querie, nao enviando os dados de novo para o cliente. No JS, o servidor manda codigo para o cliente para que cada validacao seja feita por codigo do servidor mas executado no cliente. Assim diminui a latencia e a quantidade de dados transmitida entre o cliente e o servidor.
+
+Temos de ter a seguranca. Temos de ver o que o codigo enviado pode fazer, vendo se nao é malicioso. Alem disso temos de ver a eficiencia. Queremos que o codigo enviado seja quanto possivel codigo nativo de onde vai correr. 
+
+## Virtualizacao
+aplicacao->bibliotecas->SO->hardware
+
+Utilizacao de sistemas que compilam varias linguagens para um **byte code** que é representacao intermedia do codigo. Resolve o problema de diferentes SO e bibliotecas, oferecendo interfaces comuns a todo o lado. Exemplo é o JS.
+
+Outra alternativa é usar virtualizacao ao nivel do sistema e nao so na aplicacao. Aqui o SO junto com a aplicacao e com a bibliotecas é corrido debaixo de um sistema de virtualizacao que garante o controlo de acessos. Existem 2 versoes. Umas correrm diretamento sobre o ardware, outras sobre o SO. Chama-se **hipervisor**, como maquinas virtuais. Para usar **sistemas de virtualizacao de SO**precisamos de **cloud computing** que combinam com virtualizacao.
+
+## Cloud Computing
+Ccapacidade de programar a propria estrutura, criando e configurando novos servidores é feita num contexto distribuido como resposta a clientes.
+ 
+## Edge and Fog computing
+Edge: Em vez de fornecer logo o conteudo, faz uma copia para servidores que vivem na periferia da rede (ISP e instituicoes). Assim, os clientes acedem á copia local desse recurso.
+
+Fog: Edge + Cloud. Os computadores de edge sao geridos como uma cloud, ou seja, tem virtualizacao. Assim, atraves de programas podem dar inicio a servidores virtuais dentro destas estruturas locais. Assim, a aplicacao distribuida coloca diversos servidores na cloud bem como na periferia perto dos utilizadores finais.
+
 
 
 

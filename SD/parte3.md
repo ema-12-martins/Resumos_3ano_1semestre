@@ -82,3 +82,13 @@ Para ultrapassar este problema, temos um sistema de nomes hierarquico. Diferente
 
 Podemos tambem a transparencia se mudarmos o servidor de sitio, o cliente nao nota.
 
+## Gossip - Propagacao de boatos
+**Pretendemos que todos os destinos recebam a mesma mensagem.**Para isso, cada vez que um participante pretende espalhar uma mensagem, este seleciona um subconjunto aleatorio de todos os destinos para enviar essa mensagem. Cada um que recebe a mensagem, espalha por um subconjunto de alvos... Apos mandarem as mensagens, podem esquece-la, nao tendo de ficar a espera de confirmacoes. Isto repete-se ate todos os participantes conhecerem a mensagem. Sao conhecidos como **protocolos epidemicos**. O que envia é um agente contagioso e os recetores sao afetados pela mensagem. Cada recetor ignora duplicados das mensagens que vai recebendo, o recetor ou ja esta morto ou imune. Usamos os mesmos mecanismos que uma epidemeologista.
+
+Fanout: Numero de destinos de uma mensagem em cad ronda. Reliability: Percentagem de nos que receberam a mensagem e a proporcao de mensagens que chega a todos os destinos(todas as mensagens serem recebidas por todos). Estes numeros sao proporcionais ao logaritmo de destinos.
+
+Este algoritmos so é interesante com fanout altos, o que lava a que a quantidade de copias recebidas. Existem participantes que recebem um baixo numero de copias e outros que recebem um numero muito alto. Daí nascem novas propostas para reduzir o numero de copias.
+
+Na pratica o que acontece nao é enviar a mensagem toda mas sim um anuncio de que a mensagem esta disponivel, que é muito mais pequena. A mensagem so é mesmo transmitida num pequeno numero de situacoes. Assim, **para cada destino, a mensagem chega apenas uma vez, sem recorrer a confirmacoes explicitas**. Existem variantes destes protocolos que permitem recolher informacoes como calcular maximos, minimos, medias... por valores que estao espalhados por centenas de participantes.
+
+

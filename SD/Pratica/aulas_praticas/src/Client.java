@@ -24,6 +24,8 @@ public class Client {
             }
 
             socket.shutdownOutput();
+            String media_dos_numeros = buffer_leitura.readLine();
+            System.out.println("Média dos números recebidos do servidor (TOTAL): " + media_dos_numeros);
             socket.shutdownInput();
             socket.close();
             scanner.close();

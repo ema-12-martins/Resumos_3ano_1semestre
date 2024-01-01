@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,29 +7,38 @@ public class Server {
         try {
             ServerSocket socket = new ServerSocket(12345);
 
-            while(true){
+            while (true) {
                 Socket cliente = socket.accept();
                 BufferedWriter buffer_escrita = new BufferedWriter(new OutputStreamWriter(cliente.getOutputStream()));
                 BufferedReader buffer_leitura = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-                int soma_numeros = 0;
-                int contador = 0;
-                String numero_string;
 
-                while((numero_string = buffer_leitura.readLine()) != null){
-                    int numero = Integer.parseInt(numero_string);
-                    soma_numeros+=numero;
-                    contador+=1;
+                Thread thread = new Thread(() -> {
+                    try {
+                        int soma_numeros = 0;
+                        int contador = 0;
+                        String numero_string;
 
-                    buffer_escrita.write((soma_numeros / contador) + "\n");
-                    buffer_escrita.flush();
-                }
-                cliente.shutdownInput();
-                cliente.shutdownOutput();
-                cliente.close();
+                        while ((numero_string = buffer_leitura.readLine()) != null) {
+                            int numero = Integer.parseInt(numero_string);
+                            soma_numeros += numero;
+                            contador += 1;
+
+                            buffer_escrita.write((soma_numeros / contador) + "\n");
+                            buffer_escrita.flush();
+                        }
+
+                        cliente.shutdownInput();
+                        cliente.shutdownOutput();
+                        cliente.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                thread.start();
             }
-        }catch (IOException e){
-            System.out.print("Nao foi possivel criar o socket");
+        } catch (IOException e) {
+            System.out.print("Não foi possível criar o socket");
         }
-
     }
 }

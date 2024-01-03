@@ -87,7 +87,7 @@ r.readLine();
 r.close();
 ~~~
 ****
-Para receber linahs do socket e escrever para ele.
+Para receber linhas do socket e escrever para ele.
 ~~~
 BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 rw.write();
@@ -98,7 +98,7 @@ br.readLine();
 ~~~
 
 Para garantir que os dados sao enviados, usar o flush pois caso contrario, apenas estao escritos no buffer.
-o readLine le linhas ate ao \n e se nao houvr linhas, desolver null.
+o readLine le linhas ate ao \n e se nao houver linhas, desolver null.
 
 ****
 Fechar um reader ou um writer fechar o socket.
@@ -120,10 +120,10 @@ Converte estruturas de dados em arrays de bytes que podem ser transferidos atrav
 
 Leva á abstracao das estruturas. Pode ser usado em diferentes processadores e arquiteturas. Podem haver diferentes versoes da aplicacao e estas devem conseguir comunicar.
 
-## Representacao de tipos basicos de dados
+## Problemas na representacao de tipos basicos de dados
 O primeiro está na representacao de números pois podermos ter diferentes endianess. O segundo esta na representacao de strings, como uso UTF-8 (caracteres normais 1 byte e acentuados 2 bytes) ou Latin1. 
 
-Para resolver o problema 2 solucoes. A primeira é chegar a acordo do que sera passado pela rede. Ao mandar converte para a representacao da rede e quando recebe converte para a representacao local. Assim so tem que ter 1 codigo de conversao. Tem a desvantagem que 2 maquinas que estejam a comunicar igual mas diferente com a rede tem se estar a converter 2x desnecessariamente. A outra alternativa é enviar os dados com uma etiqueta a dizer qual a representacao dos dados. Assim o recetor sabe se tem de fazer conversao ou se ja estao a chegar no formato pretendido. É melhor no caso dos sistemas forem homogeneos, ter a mesma representacao. 
+Para resolver o problema ha 2 solucoes possiveis. A primeira é chegar a acordo do que sera passado pela rede. Ao mandar converte para a representacao da rede e quando recebe converte para a representacao local. Assim so tem que ter 1 codigo de conversao. Tem a desvantagem que 2 maquinas que estejam a comunicar igual mas diferente com a rede tem se estar a converter 2x desnecessariamente. A outra alternativa é enviar os dados com uma etiqueta a dizer qual a representacao dos dados. Assim o recetor sabe se tem de fazer conversao ou se ja estao a chegar no formato pretendido. É melhor no caso dos sistemas forem homogeneos, ter a mesma representacao. 
 
 Na rede podemos mandar **texto**. Isto leva a incluir alguma redundancia para descodificar. No entanto é facilmente legivel por pessoas e portanto, facil de utilizar. Exp: HTTP e JSON.
 A alternativa é a utilizacao de formatos **binarios** que sao mais compactos e mais eficientes. Em contrapartida sao mais dificeis de entender e mais frageis pois a alteraco de 1 byte pode invalidar toda a mensagem. Ex. Java Data*Stream. Ao escolher formatos binarios, temos de nos preocupar com o alinhamento dos bytes na memoria. 
@@ -133,7 +133,7 @@ _ _ 0 1
 2 3 _ _
 _ _ _ _
 ~~~
-Cada palavra sao tipicamente 4 bytes.Neste caso temos um inteiro de 4 bytes. Neste caso o CPU tinha de ler os primeiros 4, os segundos 4 e depois escolher os 2 ultimos e ou 2 primeiros bytes do outro. Isto leva a que os acessos sejam muito mais lentos. Isto leva a que muitos formatos usem enchimento para que sejam alinhados á palavra.
+Cada palavra sao tipicamente 4 bytes. Neste caso temos um inteiro de 4 bytes. Neste caso o CPU tinha de ler os primeiros 4, os segundos 4 e depois escolher os 2 ultimos e ou 2 primeiros bytes do outro. Isto leva a que os acessos sejam muito mais lentos. Isto leva a que muitos formatos usem enchimento para que sejam alinhados á palavra.
 
 A representacao pode ter uma descricao **implicita** ou **explicita** dos seus tipos. A explicita temos etiquetas que descrevem a natureza dos dados. Na implicita, a interpretacao dos dados depende extritamente do programa. **O explicito ocupa mais espaco mas sera mais facilmetne processado. Os implicitos sao mais eficientes mas temos de ter conhecimento do codigo para serem corretamente interpretados.**
 
@@ -146,7 +146,7 @@ Se tivermos elementos opcionais, primeiro metemos um bool que diz se esta presen
 
 Nas colecoes, podemos primeiro dizer quantos elementos vamos mandar e em seguida mandamos os elementos. A outra opcao é mandar os elementos seguidos de um valor terminal que diz a que estrutura pertence.
 
-Se tivermos grafos, ou seja, 2 apontadores para a mesma coisa, podemos copiar x* o componente. Porem, como no primeiro caso tinhamos apontadores, se alterassemos num sitio alterava no outro, coisa que nao acontece do lado das copias. A outra hipotese ent é usar um mapa auxiliar. Na serealiazacao temos um mapa de Objetos para inteiros. Assim, vemos se o objeto ja existe no mapa ou nao. - indica que o que vem é um novo objeto e #n indica a referencia a algo que ja esta no mapa. Despois escreve os valores dos campos. Para descodificar usa-se um mapa de inteiros para objetos. Isto é implementado no OuputStrem e InputStream.
+Se tivermos grafos, ou seja, 2 apontadores para a mesma coisa, podemos copiar x vezes o componente. Porem, como no primeiro caso tinhamos apontadores, se alterassemos num sitio alterava no outro, coisa que nao acontece do lado das copias. A outra hipotese ent é usar um mapa auxiliar. Na serealiazacao temos um mapa de Objetos para inteiros. Assim, vemos se o objeto ja existe no mapa ou nao. - indica que o que vem é um novo objeto e #n indica a referencia a algo que ja esta no mapa. Despois escreve os valores dos campos. Para descodificar usa-se um mapa de inteiros para objetos. Isto é implementado no OuputStrem e InputStream.
 
 ## Codigo
 ~~~
@@ -223,7 +223,7 @@ Streaming: A conversao é feita a medida que é feita a travessia, por ordem que
 Object model: Temos um modelo de dados carregado em memoria que pode ser consultado por uma ordem arbitraria. È criado um objeto intermedio com todos os objetos juntos. Assim podemos consultar pela ordem que queremos. Temos de copiar os dados 2x, um para o intermedio e outro para o final.
 
 # Threads
-Os processos agrupam os recursos que estao em uso como memoria e ficheiros abertos e as threas contem o contexto de execusao.
+Os processos agrupam os recursos que estao em uso como memoria e ficheiros abertos e as threads contem o contexto de execusao.
 
 ## Client-Servidor
 A thread do cliente espera pelas respostas. A thread do servidor espera por pedidos do cliente.
@@ -263,7 +263,7 @@ Ao realizar o pedido e a resposta a ser lenta, pode bloquear a escrita de outros
 
 ****
 ## Multi-threaded
-O cliente pode ter varias threads a mandar varios pedidos em simultaneo. Mas para isso temos de ter uma seccao critica para escrever para o socket. O receive tambem poderia nao estar a ser executado pela ordem certa. So da para fazer 1 pedido da cada vez
+O cliente pode ter varias threads a mandar varios pedidos em simultaneo. Mas para isso temos de ter uma seccao critica para escrever para o socket. O receive tambem poderia nao estar a ser executado pela ordem certa. So da para fazer 1 pedido de cada vez
 
 ## Multi-threaded with Dispatcher
 Os pedidos vao para um buffer que por sua vez escreve para o socket. Nas respostas, acontece a mesma coisa. 
@@ -291,10 +291,10 @@ aplicacao->bibliotecas->SO->hardware
 
 Utilizacao de sistemas que compilam varias linguagens para um **byte code** que é representacao intermedia do codigo. Resolve o problema de diferentes SO e bibliotecas, oferecendo interfaces comuns a todo o lado. Exemplo é o JS.
 
-Outra alternativa é usar virtualizacao ao nivel do sistema e nao so na aplicacao. Aqui o SO junto com a aplicacao e com a bibliotecas é corrido debaixo de um sistema de virtualizacao que garante o controlo de acessos. Existem 2 versoes. Umas correrm diretamento sobre o ardware, outras sobre o SO. Chama-se **hipervisor**, como maquinas virtuais. Para usar **sistemas de virtualizacao de SO**precisamos de **cloud computing** que combinam com virtualizacao.
+Outra alternativa é usar virtualizacao ao nivel do sistema e nao so na aplicacao. Aqui o SO junto com a aplicacao e com a bibliotecas é corrido debaixo de um sistema de virtualizacao que garante o controlo de acessos. Existem 2 versoes. Umas correm diretamento sobre o hardware, outras sobre o SO. Chama-se **hipervisor**, como maquinas virtuais. Para usar **sistemas de virtualizacao de SO** precisamos de **cloud computing** que combinam com virtualizacao.
 
 ## Cloud Computing
-Ccapacidade de programar a propria estrutura, criando e configurando novos servidores é feita num contexto distribuido como resposta a clientes.
+Capacidade de programar a propria estrutura, criando e configurando novos servidores é feita num contexto distribuido como resposta a clientes.
  
 ## Edge and Fog computing
 Edge: Em vez de fornecer logo o conteudo, faz uma copia para servidores que vivem na periferia da rede (ISP e instituicoes). Assim, os clientes acedem á copia local desse recurso.

@@ -36,6 +36,7 @@ Nota: **ThreadID.get()** da-nos o identificador da thread.
 
 # Propriedades da Computacao Assincrona
 **Propriedades de protecao**: Ao pedir estas propriedades, estamos a dizer ao sistema que ha algo mau que nao deve acontecer. Ex. Exclusao mutua.
+
 **Propriedades de animacao**: Indicam que um sistema está correta quando algo de bom acontece.
 Temos de conseguir equilibrar estes 2 tipos de propriedades. Ex. Nao haver deadlock.
 
@@ -90,6 +91,8 @@ Consideremos que a secao critica é pedir o numero que vamos testar se é primo.
 1. Pedir numero -> Teste -> Pedir numero -> Teste
 2. Pedir 2 numeros -> Teste -> Incrementar -> Teste
 
+Assim temos a ilustracao dos casos anteriormente mencionados:
+
 1. 
 <pre>
 --++++--++++
@@ -107,7 +110,7 @@ Neste caso nao vale a pena pedir mais threads pois 1 deles nao estará a fazer t
       --++++++++++
         --++++++++++
 </pre>
-Neste caso conseguimos ter mis threads em simultaneo. Como passam mais tempo fora da secao critica, esta pode ser usada por mais threads.
+Neste caso conseguimos ter mais threads em simultaneo. Como passam mais tempo fora da secao critica, esta pode ser usada por mais threads.
       
 Devemos fazer com que o codigo das secçoes criticas seja pequeno em relacao ao codigo total e temos de fazer com que essa secção seja usada o minimo de vezes possiveis. **Devemos minimizar o numero de threads que querem aceder a uma secção critica bem como minimizar o tempo destas zonas.**
 
@@ -124,19 +127,19 @@ Se tivermos um observador no meio, consegue ver um estado incoerente.
 ----lock A---- 
   ----lock B----
 </pre>
-Assim já resolveria o problema. Porem tornar isto mais eficiente
+Assim já resolveria o problema. Porem, podemos tornar isto mais eficiente.
 <pre>
 ----lock A----
             ----lock B----
 </pre>
-Isto é um caso concreto do 2PL
+Isto é um caso concreto do 2PL.
 
 # 2PL (Two Phase locking)
-1-> Todos os locks tem de ser feitos antes de qualquer unlock.
-2-> Acesso a cada item de dados apensas é feito no periodo de tempo em que o lock é adquirido.
+1. Todos os locks tem de ser feitos antes de qualquer unlock.
+2. Acesso a cada item de dados apensas é feito no periodo de tempo em que o lock é adquirido.
 
-1 fase é crescimento, ou seja, adquire locks. A degunda fase é de decrescimo, ou seja, fazer unlocks.
-O programa gerado é semelhante a 1 que tenha todos os locks adquiridos no incio e liberte todos no final.
+A primeira fase é a fase de crescimento, ou seja, adquirem-se locks. A segunda fase é de decrescimo, ou seja, fazem-se unlocks.
+O programa gerado é semelhante a 1 que tenha todos os locks adquiridos no incio e os liberte a todos no final.
 
 Exp:
 <pre>
@@ -145,8 +148,7 @@ Exp:
 </pre>
 
 # Locks vs Variavies
-Varias threads que acedam ao mesmo item de dados concorrentemente devem adquirir o mesmo lock. Para o fazer:
--> O lock é uma variavel de instancia do objeto
+Varias threads que acedam ao mesmo item de dados concorrentemente devem adquirir o mesmo lock. Para o fazer temos que **o lock tem de ser uma variavel de instancia do objeto**.
 
 Quando temos variaveis globais:
 private **static** Lock l = new ReentrantLock();
@@ -169,10 +171,10 @@ interface LockManager{
   Lock unlock(Object name);
 }
 ~~~
-Se nã existir lock para o objeto que queremos, este cria-o. Aos air da seccao critica fazemos unlock e se ninguem o estiver a usar, podemos elimina-lo do mapa.
+Se não existir lock para o objeto que queremos, este cria-o. Aos sair da seccao critica fazemos unlock e se ninguem o estiver a usar, podemos elimina-lo do mapa.
 
 # Variaveis de condição
-Queremos que uma thread espere por outras. Exp: Esperar para ter X jogadores para jogar. Tambem nao queremos estar numa espera ativa.
+Queremos que uma thread espere por outras. Exp: Esperar para ter X jogadores para jogar. Tambem **nao queremos estar numa espera ativa**.
 
 Note-se que temos de libertaar o lock enquanto estamos a espera para que outros possam entrar nesta seccao. Quando for acordado temos de repor o lock
 
@@ -181,7 +183,9 @@ Lock l = new ReentrantLock();
 Condition c = l.newCondition();
 ~~~
 **c.await();** -> Suspende o thread e liberta o lock associado
+
 **c.signalAll();** -> Acorda todos os threads que foram suspendidos nessa condicao
+
 **c.signal();** -> Acorda apenas uma das threads que foram suspendidas nessa condicao
 
 Temos de ter em atencao que o lock seja utilizado pelos que acabaram de acordar e nao pelos novos que acabaram de chegar.
@@ -203,7 +207,7 @@ O metodo c.await pode acordar de forma subtita pelo que devemos sempre usar o wh
 # Ordering
 Por omissao a thread que esta a espera pode ir para uma seccao critica livre. Se colocar-mos true no construtor do ReentrantLock, da mais prioridade os threads que estão à espera á mais tempo(no entanto nao garante que seja fifo).
 
-As threads que adormecem perdem a vez na fila de adquiricao do lockn quando acordam, em comparacao com os que chegaram depois do numero max.
+As threads que adormecem perdem a vez na fila de adquiricao do lock quando acordam, em comparacao com os que chegaram depois do numero max.
 
 Solucao:
 ~~~
@@ -257,6 +261,7 @@ void writeUnlock(){
 
 # Soup counter -> Perceber quando usar signalAll ou signal
 O consumidor tem de esperar pelo produtor se o balcao estiver vazio. Se o balao estiver cheio, o produtor nao pode colocar mais sopas nele.
+
 Se o produtor colocar uma sopa no balcao ele necessita apenas de acordar um consumidor. Se o balcao estiver cheio e o consumidor tirar uma sopa, entao este pode apenas sinalizar um dos produtores para colocar uma sopa.
 ~~~
 Object get(){
@@ -276,7 +281,10 @@ void put(Object s){
   l.unlock();
 }
 ~~~
-O problema é que ao usar o signal() desta forma podemos acordar tanto um produtor como um consumidor(estao na mesma variavel de condicao). **Bounded buffer** -> Este problema surge quando usamos diferentes condicoes associadas á mesma variavel de condicao.
+O problema é que ao usar o signal() desta forma podemos acordar tanto um produtor como um consumidor(estao na mesma variavel de condicao). 
+
+**Bounded buffer** -> Este problema surge quando usamos diferentes condicoes associadas á mesma variavel de condicao.
+
 Passamos a ter duas condicoes:
 ~~~
 Object get(){

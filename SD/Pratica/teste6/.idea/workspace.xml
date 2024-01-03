@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="89123b9e-ec4f-433e-890c-9bcfa85a2495" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Teste3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/Teste3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste3/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/Teste4.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/src/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste4/src/Servidor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/Teste5.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/src/Presenca.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Teste5/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/guiao7.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/src/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/src/Contact.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/src/ContactList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao7/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/aulas_praticas.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/src/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guiao_6/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/src/Controlador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/src/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../teste_18_19/teste_18_19.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2aRwNYWGsvuf8GjBKLLyyjcmanU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89123b9e-ec4f-433e-890c-9bcfa85a2495" name="Changes" comment="" />
+      <created>1704294662045</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704294662045</updated>
+    </task>
+    <servers />
+  </component>
+</project>
